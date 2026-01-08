@@ -1,12 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import { EXAM_DATA } from './data';
 import { SearchBar } from './components/SearchBar';
 import { CategoryTabs } from './components/CategoryTabs';
 import { QuestionCard } from './components/QuestionCard';
 import { QuestionType } from './types';
-import { BookOpen, AlertCircle, Eye, EyeOff } from 'lucide-react';
+import { useExamData } from './hooks/useExamData';
+import { BookOpen, AlertCircle, Eye, EyeOff, Download, RotateCcw } from 'lucide-react';
 
 const App: React.FC = () => {
+  const { questions, updateQuestion, resetCorrections } = useExamData();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState<QuestionType | 'all'>('all');
   const [showAllAnswers, setShowAllAnswers] = useState(false);
@@ -15,7 +16,7 @@ const App: React.FC = () => {
   const filteredData = useMemo(() => {
     const term = searchTerm.toLowerCase().trim();
     
-    return EXAM_DATA.filter((item) => {
+    return questions.filter((item) => {
       // 1. Filter by Tab
       if (activeTab !== 'all' && item.type !== activeTab) {
         return false;
@@ -30,20 +31,35 @@ const App: React.FC = () => {
 
       return contentMatch || idMatch || optionsMatch;
     });
-  }, [searchTerm, activeTab]);
+  }, [questions, searchTerm, activeTab]);
 
   // Counts for tabs
   const counts = useMemo(() => {
     const getCount = (type: QuestionType) => 
-      EXAM_DATA.filter(i => i.type === type).length;
+      questions.filter(i => i.type === type).length;
     
     return {
-      all: EXAM_DATA.length,
+      all: questions.length,
       single: getCount('single'),
       multiple: getCount('multiple'),
       judgment: getCount('judgment')
     };
-  }, []);
+  }, [questions]);
+
+  // Export Function
+  const handleExport = () => {
+    // Generate the TS file content
+    const fileContent = `import { Question } from './types';\n\n// Updated Data exported from App\nexport const EXAM_DATA: Question[] = ${JSON.stringify(questions, null, 2)};`;
+    
+    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'data.ts';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className="min-h-screen pb-10 bg-slate-50">
@@ -59,8 +75,24 @@ const App: React.FC = () => {
                  <h1 className="text-base font-extrabold leading-none tracking-tight text-slate-900">职场管理员考试</h1>
                </div>
              </div>
-             <div className="text-[10px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">
-               模拟卷 2026
+             
+             {/* Action Buttons */}
+             <div className="flex items-center gap-3">
+               <button 
+                onClick={handleExport}
+                className="flex items-center gap-1 text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded hover:bg-blue-100 transition-colors"
+                title="导出当前所有数据为文件"
+               >
+                 <Download size={12} />
+                 导出数据
+               </button>
+               <button 
+                onClick={resetCorrections}
+                className="text-[10px] text-slate-400 underline decoration-dotted"
+                title="重置所有本地修改"
+               >
+                 重置
+               </button>
              </div>
           </div>
 
@@ -104,6 +136,7 @@ const App: React.FC = () => {
                 key={question.id} 
                 question={question} 
                 forceShowAnswer={showAllAnswers}
+                onUpdate={updateQuestion}
               />
             ))}
             
