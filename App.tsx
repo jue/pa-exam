@@ -56,6 +56,7 @@ const App: React.FC = () => {
     const faqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
+      "url": "https://jue.sh/pa-exam/",
       "mainEntity": filteredData.slice(0, 10).map(q => ({
         "@type": "Question",
         "name": q.content,
