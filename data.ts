@@ -550,7 +550,7 @@ export const EXAM_DATA: Question[] = [
       'D. 租赁风险可控',
       'E. 支持业务发展'
     ],
-    answer: 'ACDE',
+    answer: 'ABCDE',
     explanation: '租赁管理核心目标是规范（A）、控本（C）、风控（D）、支撑业务（E）；“投产意识”属投资管理范畴，非租赁直接目标。'
   },
   {
