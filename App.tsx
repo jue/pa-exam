@@ -46,7 +46,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen pb-12 bg-slate-50">
+    <div className="min-h-screen pb-10 bg-slate-50">
       {/* Sticky Header - Optimized for minimal height */}
       <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="max-w-3xl mx-auto px-4 pt-3 pb-2 space-y-3">
@@ -96,9 +96,9 @@ const App: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-3xl mx-auto px-4 py-4">
+      <main className="max-w-3xl mx-auto px-3 py-3">
         {filteredData.length > 0 ? (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {filteredData.map((question) => (
               <QuestionCard 
                 key={question.id} 

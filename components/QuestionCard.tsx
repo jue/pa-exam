@@ -23,18 +23,18 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
 
   const getTypeLabel = (type: string) => {
     switch (type) {
-      case 'single': return '单选题';
-      case 'multiple': return '多选题';
-      case 'judgment': return '判断题';
+      case 'single': return '单选';
+      case 'multiple': return '多选';
+      case 'judgment': return '判断';
       default: return '未知';
     }
   };
 
   const getTypeColor = (type: string) => {
     switch (type) {
-      case 'single': return 'bg-blue-100 text-blue-800';
-      case 'multiple': return 'bg-purple-100 text-purple-800';
-      case 'judgment': return 'bg-green-100 text-green-800';
+      case 'single': return 'bg-blue-50 text-blue-700 border-blue-100';
+      case 'multiple': return 'bg-purple-50 text-purple-700 border-purple-100';
+      case 'judgment': return 'bg-green-50 text-green-700 border-green-100';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
@@ -62,46 +62,47 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
 
   return (
     <div className={`
-      bg-white rounded-xl shadow-sm border overflow-hidden transition-all duration-300
-      ${showResult ? 'border-slate-200' : 'border-slate-100 hover:shadow-md'}
+      bg-white rounded-lg shadow-sm border overflow-hidden transition-all duration-300
+      ${showResult ? 'border-slate-200' : 'border-slate-100'}
     `}>
-      <div className="p-5 md:p-6">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4">
-            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${getTypeColor(question.type)}`}>
+      {/* Compact Padding: p-4 instead of p-6 */}
+      <div className="p-4">
+        {/* Header - More Compact */}
+        <div className="flex items-center justify-between mb-2">
+            <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border ${getTypeColor(question.type)}`}>
               {getTypeLabel(question.type)}
             </span>
-            <span className="text-xs text-slate-400 font-mono bg-slate-50 px-2 py-1 rounded">#{question.originalNo}</span>
+            <span className="text-[10px] text-slate-400 font-mono">#{question.originalNo}</span>
         </div>
         
-        {/* Question Content */}
-        <h3 className="text-lg font-bold text-slate-900 mb-6 leading-relaxed">
+        {/* Question Content - Text-base instead of lg, smaller margin */}
+        <h3 className="text-base font-bold text-slate-900 mb-3 leading-snug">
            {question.content}
         </h3>
 
-        {/* Options */}
-        <div className="space-y-3">
+        {/* Options - Tighter spacing */}
+        <div className="space-y-2">
           {question.options.map((option, index) => {
             const optionLabel = option.charAt(0);
             const isCorrect = question.answer?.includes(optionLabel);
             const isSelected = selectedOptions.includes(optionLabel);
             
-            let containerStyle = "bg-slate-50 border-slate-100 text-slate-700 hover:bg-slate-100";
+            let containerStyle = "bg-slate-50 border-slate-100 text-slate-700 active:bg-slate-100";
             let icon = null;
 
             if (showResult) {
                if (isCorrect) {
                  containerStyle = "bg-green-50 border-green-500 text-green-800 ring-1 ring-green-500";
-                 icon = <CheckCircle2 size={20} className="text-green-600 flex-shrink-0" />;
+                 icon = <CheckCircle2 size={16} className="text-green-600 flex-shrink-0" />;
                } else if (isSelected && !isCorrect) {
                  containerStyle = "bg-red-50 border-red-500 text-red-800";
-                 icon = <XCircle size={20} className="text-red-600 flex-shrink-0" />;
+                 icon = <XCircle size={16} className="text-red-600 flex-shrink-0" />;
                } else {
-                 containerStyle = "opacity-50 grayscale";
+                 containerStyle = "opacity-60 grayscale bg-white border-slate-100";
                }
             } else {
               if (isSelected) {
-                containerStyle = "bg-blue-50 border-blue-500 text-blue-800 ring-1 ring-blue-500 shadow-sm";
+                containerStyle = "bg-blue-50 border-blue-500 text-blue-900 ring-1 ring-blue-500 shadow-sm";
               }
             }
 
@@ -110,60 +111,61 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
                 key={index}
                 onClick={() => handleOptionClick(optionLabel)}
                 className={`
-                  relative flex items-center p-3.5 rounded-xl border text-base transition-all duration-200 cursor-pointer select-none
+                  relative flex items-start p-3 rounded-lg border text-sm transition-all duration-200 cursor-pointer select-none leading-normal
                   ${containerStyle}
                 `}
               >
-                <div className="flex-1 font-medium">{option}</div>
-                {icon && <div className="ml-3">{icon}</div>}
+                <div className="flex-1">{option}</div>
+                {icon && <div className="ml-2 mt-0.5">{icon}</div>}
               </div>
             );
           })}
         </div>
 
-        {/* Multiple Choice Submit Button */}
+        {/* Multiple Choice Submit Button - More compact */}
         {isMultiple && !showResult && !forceShowAnswer && (
           <button 
             onClick={handleSubmitMultiple}
             disabled={selectedOptions.length === 0}
             className={`
-              mt-6 w-full py-3 rounded-xl flex items-center justify-center font-bold transition-all
+              mt-4 w-full py-2.5 rounded-lg flex items-center justify-center text-sm font-bold transition-all
               ${selectedOptions.length > 0 
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 hover:bg-blue-700' 
+                ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20 hover:bg-blue-700' 
                 : 'bg-slate-100 text-slate-400 cursor-not-allowed'}
             `}
           >
-            <CheckSquare size={18} className="mr-2" />
+            <CheckSquare size={16} className="mr-1.5" />
             提交答案
           </button>
         )}
 
-        {/* Reference Answer & Explanation Section */}
+        {/* Reference Answer & Explanation Section - Tighter Layout */}
         {showResult && question.answer && (
           <div className={`
-            mt-6 rounded-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 border
+            mt-3 rounded-lg overflow-hidden animate-in fade-in slide-in-from-top-1 duration-300 border
             ${isSubmitted && selectedOptions.some(o => !question.answer?.includes(o)) || isSubmitted && question.answer?.split('').some(a => !selectedOptions.includes(a)) 
               ? 'bg-red-50 border-red-100 text-red-900' 
               : 'bg-green-50 border-green-100 text-green-900'
             }
           `}>
             {/* Answer Header */}
-            <div className="p-4 flex items-center">
-              <HelpCircle size={20} className="mr-3 opacity-70" />
-              <div>
-                <div className="text-xs font-semibold uppercase opacity-70 mb-0.5">正确答案</div>
-                <div className="text-2xl font-bold tracking-widest">{question.answer}</div>
+            <div className="px-3 py-2.5 flex items-center justify-between">
+              <div className="flex items-center">
+                <div className="bg-white/50 p-1 rounded mr-2">
+                  <HelpCircle size={14} className="opacity-70" />
+                </div>
+                <span className="text-xs font-semibold opacity-80 mr-2">正确答案</span>
+                <span className="text-lg font-bold tracking-widest leading-none">{question.answer}</span>
               </div>
             </div>
 
             {/* Explanation */}
             {question.explanation && (
-              <div className="px-4 pb-4 pt-0">
-                <div className="border-t border-black/10 pt-3 mt-1">
-                  <div className="flex items-start gap-2 text-sm leading-relaxed opacity-90">
-                    <BookOpenCheck size={16} className="mt-1 flex-shrink-0 opacity-70" />
-                    <span>
-                      <span className="font-bold mr-1">解析：</span>
+              <div className="px-3 pb-3 pt-0">
+                <div className="border-t border-black/5 pt-2 mt-0.5">
+                  <div className="flex items-start gap-2 text-xs leading-relaxed opacity-90">
+                    <BookOpenCheck size={14} className="mt-0.5 flex-shrink-0 opacity-60" />
+                    <span className="text-justify">
                       {question.explanation}
                     </span>
                   </div>
