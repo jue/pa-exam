@@ -32,6 +32,11 @@ const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<QuestionType | 'all'>('all');
   const [showAllAnswers, setShowAllAnswers] = useState(false);
 
+  // Scroll to top when tab changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeTab]);
+
   // Filter Logic
   const filteredData = useMemo(() => {
     const term = searchTerm.toLowerCase().trim();
