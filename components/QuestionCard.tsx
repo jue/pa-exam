@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Question } from '../types';
 import { CheckCircle2, XCircle, HelpCircle, CheckSquare, BookOpenCheck, Pencil, Save, X } from 'lucide-react';
 
@@ -16,6 +16,11 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
   // Edit State
   const [editAnswer, setEditAnswer] = useState(question.answer || '');
   const [editExplanation, setEditExplanation] = useState(question.explanation || '');
+
+  // Extract option keys (A, B, C, D) efficiently
+  const optionKeys = useMemo(() => {
+    return question.options.map(opt => opt.charAt(0).toUpperCase());
+  }, [question.options]);
 
   useEffect(() => {
     if (forceShowAnswer) {
@@ -70,7 +75,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
   };
 
   const handleSaveEdit = () => {
-    onUpdate(question.id, editAnswer.toUpperCase(), editExplanation);
+    onUpdate(question.id, editAnswer, editExplanation);
     setIsEditing(false);
   };
 
@@ -78,6 +83,19 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
     setEditAnswer(question.answer || '');
     setEditExplanation(question.explanation || '');
     setIsEditing(false);
+  };
+
+  // Helper to toggle answer for multi-select edit
+  const toggleEditAnswer = (key: string) => {
+    const current = editAnswer.split('');
+    let next;
+    if (current.includes(key)) {
+      next = current.filter(k => k !== key);
+    } else {
+      next = [...current, key];
+    }
+    // Sort to keep consistent (e.g., always "AB", never "BA")
+    setEditAnswer(next.sort().join(''));
   };
 
   return (
@@ -164,35 +182,76 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
         {isEditing && (
           <div className="mt-3 bg-orange-50 rounded-lg p-3 border border-orange-200 animate-in fade-in zoom-in-95">
             <div className="mb-3">
-              <label className="block text-xs font-bold text-orange-800 mb-1">修改答案</label>
-              <input 
-                type="text" 
-                value={editAnswer}
-                onChange={(e) => setEditAnswer(e.target.value)}
-                className="w-full text-base border border-orange-300 rounded p-2 focus:ring-2 focus:ring-orange-500"
-                placeholder="例如: AB"
-              />
-              <p className="text-[10px] text-orange-600 mt-1">多选请直接输入字母，如 ABCD</p>
+              <label className="block text-xs font-bold text-orange-800 mb-1">
+                修改答案 
+                <span className="font-normal text-orange-600 ml-1">
+                  ({isMultiple ? '多选：点击按钮组合' : '单选：下拉选择'})
+                </span>
+              </label>
+              
+              {isMultiple ? (
+                // Multi-select UI: Button Group
+                <div className="flex flex-wrap gap-2">
+                  {optionKeys.map(key => (
+                    <button
+                      key={key}
+                      onClick={() => toggleEditAnswer(key)}
+                      className={`
+                        w-10 h-10 rounded-lg font-bold border flex items-center justify-center transition-all duration-200
+                        ${editAnswer.includes(key) 
+                          ? 'bg-orange-600 text-white border-orange-600 shadow-md transform scale-105' 
+                          : 'bg-white text-slate-500 border-slate-300 hover:bg-slate-50 hover:border-slate-400'
+                        }
+                      `}
+                    >
+                      {key}
+                    </button>
+                  ))}
+                  <div className="ml-2 flex items-center text-sm font-mono font-bold text-orange-700 bg-orange-100 px-3 rounded">
+                    当前: {editAnswer || '?'}
+                  </div>
+                </div>
+              ) : (
+                // Single-select UI: Dropdown
+                <div className="relative">
+                  <select 
+                    value={editAnswer}
+                    onChange={(e) => setEditAnswer(e.target.value)}
+                    className="w-full appearance-none bg-white text-base border border-orange-300 rounded-lg py-2 pl-3 pr-8 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                  >
+                    <option value="">请选择正确答案...</option>
+                    {optionKeys.map(key => (
+                      <option key={key} value={key}>{key}</option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-orange-500">
+                    <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"/>
+                    </svg>
+                  </div>
+                </div>
+              )}
             </div>
+            
             <div className="mb-3">
               <label className="block text-xs font-bold text-orange-800 mb-1">修改解析</label>
               <textarea 
                 value={editExplanation}
                 onChange={(e) => setEditExplanation(e.target.value)}
                 rows={3}
-                className="w-full text-sm border border-orange-300 rounded p-2 focus:ring-2 focus:ring-orange-500"
+                className="w-full text-sm border border-orange-300 rounded p-2 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
               />
             </div>
             <div className="flex gap-2">
               <button 
                 onClick={handleSaveEdit}
-                className="flex-1 bg-orange-600 text-white py-2 rounded text-xs font-bold flex items-center justify-center gap-1"
+                className="flex-1 bg-orange-600 text-white py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-1 shadow-sm hover:bg-orange-700 transition-colors"
               >
-                <Save size={14} /> 保存
+                <Save size={14} /> 保存修改
               </button>
               <button 
                 onClick={handleCancelEdit}
-                className="flex-1 bg-white text-slate-600 border border-slate-300 py-2 rounded text-xs font-bold flex items-center justify-center gap-1"
+                className="flex-1 bg-white text-slate-600 border border-slate-300 py-2 rounded-lg text-xs font-bold flex items-center justify-center gap-1 hover:bg-slate-50 transition-colors"
               >
                 <X size={14} /> 取消
               </button>
@@ -212,7 +271,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
             {/* Edit Button (Visible on hover or always visible on mobile) */}
             <button
               onClick={() => setIsEditing(true)}
-              className="absolute top-2 right-2 p-1.5 rounded-full bg-white/50 text-slate-400 hover:text-orange-600 hover:bg-white transition-all"
+              className="absolute top-2 right-2 p-1.5 rounded-full bg-white/50 text-slate-400 hover:text-orange-600 hover:bg-white transition-all shadow-sm"
               title="纠错/修改答案"
             >
               <Pencil size={14} />
