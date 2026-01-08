@@ -38,10 +38,113 @@
       }
     }
     </script>
+    <style>
+      /* 针对预渲染内容的简单优化 */
+      .ssg-only { display: block; }
+      body.js-ready .ssg-only { display: none; }
+      .scrollbar-hide::-webkit-scrollbar { display: none; }
+      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
   </head>
   <body class="bg-slate-50 text-slate-900 antialiased">
-    <div id="root"></div>
-    <!-- 使用相对路径 index.tsx 确保在不同环境（如自定义域名或 GitHub Pages）下均能正确加载 -->
+    <!-- Root Container with Pre-rendered Content -->
+    <div id="root">
+      <div class="min-h-screen pb-12 bg-slate-50">
+        <!-- Static Header Shell -->
+        <header class="sticky top-0 z-20 bg-white/95 backdrop-blur-xl border-b border-slate-200/60 shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
+          <div class="max-w-3xl mx-auto px-4 pt-4 pb-2 space-y-4">
+            <div class="flex items-center justify-between">
+               <div class="flex items-center gap-3">
+                 <div class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600">
+                   <div class="w-5 h-5 border-2 border-white rounded-sm"></div>
+                 </div>
+                 <div class="flex flex-col">
+                   <div class="text-lg font-black tracking-tight text-slate-900">职场管理员<span className="text-orange-600">考试助手</span></div>
+                   <div class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">2026 上半年 · 正在加载...</div>
+                 </div>
+               </div>
+            </div>
+            
+            <!-- Static Search Bar Shell -->
+            <div class="relative w-full">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-300">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+              <div class="block w-full py-2.5 pl-9 bg-white border border-slate-200 rounded-lg text-slate-400 text-sm">搜索题目...</div>
+            </div>
+
+            <!-- Static Tabs Shell -->
+            <nav class="flex space-x-2 overflow-x-auto pb-1 scrollbar-hide">
+              <div class="bg-orange-600 text-white px-3 py-1.5 rounded-full text-xs font-medium border border-orange-600">全部</div>
+              <div class="bg-white text-slate-600 px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200">单选</div>
+              <div class="bg-white text-slate-600 px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200">多选</div>
+              <div class="bg-white text-slate-600 px-3 py-1.5 rounded-full text-xs font-medium border border-slate-200">判断</div>
+            </nav>
+          </div>
+        </header>
+
+        <!-- Static Question List (Partial for SEO & Initial Paint) -->
+        <main class="max-w-3xl mx-auto px-3 py-4 space-y-4">
+          <!-- Question 3 -->
+          <article class="bg-white rounded-lg shadow-sm border border-slate-100 p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold border bg-blue-50 text-blue-700 border-blue-100">单选</span>
+              <span class="text-[10px] text-slate-400 font-mono">#3</span>
+            </div>
+            <h2 class="text-base font-bold text-slate-900 mb-3">自有物业应选用（ ）暖气片。</h2>
+            <div class="space-y-2">
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">A. 钢制管式</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">B. 铸铁型</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">C. 铜铝复合型</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">D. 铸铝型</div>
+            </div>
+          </article>
+
+          <!-- Question 6 -->
+          <article class="bg-white rounded-lg shadow-sm border border-slate-100 p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold border bg-blue-50 text-blue-700 border-blue-100">单选</span>
+              <span class="text-[10px] text-slate-400 font-mono">#6</span>
+            </div>
+            <h2 class="text-base font-bold text-slate-900 mb-3">关于职场规划，下列论述不正确的是：（ ）。</h2>
+            <div class="space-y-2">
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">A. 对已有职场应精确认到的具体事项并与职场预算相对应</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">B. 应做好需求合理性评估及优先级管理</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">C. 由专业公司总部和二级机构编制，与三四级机构无关</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">D. 当职场规划涉及大幅变化调整时，应提前半年上报</div>
+            </div>
+          </article>
+
+          <!-- Question 48 -->
+          <article class="bg-white rounded-lg shadow-sm border border-slate-100 p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold border bg-purple-50 text-purple-700 border-purple-100">多选</span>
+              <span class="text-[10px] text-slate-400 font-mono">#48</span>
+            </div>
+            <h2 class="text-base font-bold text-slate-900 mb-3">智慧职场系统中包含哪些常用模块？</h2>
+            <div class="space-y-2">
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">A. 立项列表</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">B. 职场列表</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">C. 履约列表</div>
+              <div class="p-3 rounded-lg border border-slate-100 bg-slate-50 text-sm text-slate-700">D. 支付列表</div>
+            </div>
+          </article>
+
+          <!-- Loading Placeholder -->
+          <div class="flex justify-center py-8">
+            <div class="text-slate-300 text-xs animate-pulse">正在激活交互功能...</div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- React App Entry -->
     <script type="module" src="./index.tsx"></script>
+    <script>
+      // 简单标记，用于 React 加载后隐藏特定 SSG 元素（如果需要）
+      window.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('js-ready');
+      });
+    </script>
   </body>
 </html>
