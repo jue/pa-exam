@@ -1,6 +1,6 @@
 import { Question } from './types';
 
-// Data parsed from the provided text with analyzed answers
+// Data with explanations for each answer
 export const EXAM_DATA: Question[] = [
   // --- 单选题 ---
   {
@@ -9,7 +9,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '自有物业应选用（ ）暖气片。',
     options: ['A. 钢制管式', 'B. 铸铁型', 'C. 铜铝复合型', 'D. 铸铝型'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '自有物业使用年限长，需兼顾散热效率、耐腐蚀性和使用寿命。铜铝复合型暖气片导热快、耐压耐腐、寿命长，适合长期使用；铸铁笨重、钢制易氧腐蚀，铸铝承压能力弱，均不理想。'
   },
   {
     id: '4',
@@ -17,7 +18,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '卫生间通风系数（ ）次/小时。',
     options: ['A. 10', 'B. 15', 'C. 18', 'D. 20'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '根据《民用建筑供暖通风与空气调节设计规范》（GB50736），公共建筑卫生间换气次数一般为10次/小时，选项A符合标准。'
   },
   {
     id: '5',
@@ -25,7 +27,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '空调风管及全热交换器风管保温采用（ ）。',
     options: ['A. 银纸', 'B. 棉花', 'C. 闭孔橡塑', 'D. 帆布'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '闭孔橡塑具有优异的保温性、防潮性、阻燃性和柔韧性，是风管保温的常用材料；银纸仅为反射层，棉花易燃，帆布无保温性能。'
   },
   {
     id: '6',
@@ -38,7 +41,8 @@ export const EXAM_DATA: Question[] = [
       'C. 由专业公司总部和二级机构编制，与三四级机构无关',
       'D. 当职场规划涉及大幅变化调整时，应提前半年上报集团财务部'
     ],
-    answer: 'C'
+    answer: 'C',
+    explanation: '职场规划需各级机构参与，三四级机构作为使用单位，其需求是规划基础，不能排除在外，故C错误。'
   },
   {
     id: '7',
@@ -46,7 +50,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '分支机构职场消防安全第一责任人是（ ）。',
     options: ['A. 行政部经理', 'B. 职场管理员', 'C. 机构负责人', 'D. 消防系统施工单位负责人'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '根据《消防法》及企业安全管理规定，单位主要负责人（即机构负责人）是消防安全第一责任人。'
   },
   {
     id: '8',
@@ -54,7 +59,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '成为职场管理系统的操作人员，需要通过下述哪项考核？',
     options: ['A. CAD绘图测试', 'B. 二级建造师认证考试', 'C. 职场管理员认证考试', 'D. 设计师认证考核'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '平安内部规定，操作系统需通过“职场管理员认证考试”以确保操作规范性和流程合规性。'
   },
   {
     id: '9',
@@ -67,7 +73,8 @@ export const EXAM_DATA: Question[] = [
       'C. 按照每季度进行租金支付',
       'D. 有复原责任以及有不公平退租、转租条件'
     ],
-    answer: 'D'
+    answer: 'D',
+    explanation: 'D项会增加退租成本与法律风险，属于高风险条款，制度明确要求避免。A、B、C均为常规条款。'
   },
   {
     id: '10',
@@ -80,7 +87,8 @@ export const EXAM_DATA: Question[] = [
       'C. 行政区-商圈-城市-楼宇',
       'D. 城市-楼宇-行政区-商圈'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: '租金比对遵循从具体到宽泛原则：同楼宇最精准，其次行政区、商圈，最后全市，确保参考价合理性。'
   },
   {
     id: '11',
@@ -92,7 +100,8 @@ export const EXAM_DATA: Question[] = [
       'B. 机构带使用部门看房',
       'C. 通知大行，由大行带着或经大行联络业主后安排机构使用部门看房'
     ],
-    answer: 'C'
+    answer: 'C',
+    explanation: '集中租赁由大行统一协调，为保证流程合规、信息对称、避免私下接触，必须通过大行安排看房。'
   },
   {
     id: '12',
@@ -104,7 +113,8 @@ export const EXAM_DATA: Question[] = [
       'B. 内租布满、外租过渡、临时共享',
       'C. 外租优先、内租过渡、临时共享'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: '“内租优先”指优先使用集团内部自有或已租物业，降低外部租赁成本，符合资源集约原则。'
   },
   {
     id: '13',
@@ -116,7 +126,8 @@ export const EXAM_DATA: Question[] = [
       'B. 自行看房谈判签约',
       'C. 机构不可推荐备选物业'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: '机构可推荐物业，但必须由大行统一评估、打分、纳入流程，确保公平性和集中管理。'
   },
   {
     id: '14',
@@ -129,7 +140,8 @@ export const EXAM_DATA: Question[] = [
       'C. 主动找其他集团委托的大行，完成选址签约谈判',
       'D. 及时告知总部和集团，找到问题，解决问题'
     ],
-    answer: 'D'
+    answer: 'D',
+    explanation: '集中租赁为集团统一行为，机构不得擅自更换中介或绕过流程，应通过正式渠道反馈问题。'
   },
   {
     id: '15',
@@ -137,7 +149,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '集中租赁项目的租赁合同由哪方拟定（ ）。',
     options: ['A. 大行', 'B. 机构', 'C. 业主'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '大行作为集团委托方，负责合同起草以确保条款符合集团标准，机构审核，业主确认。'
   },
   {
     id: '16',
@@ -149,7 +162,8 @@ export const EXAM_DATA: Question[] = [
       'B. 市场租金数据覆盖区域，拟租赁物业年租金（含年物业费）> 50万元，按照与职场系统中市场租金数据的楼宇/行政区/市的租金单价进行比照（比照优先级：同楼宇价格 > 同行政区价格 > 全市价格），单价超过市场租金数据参考范围的，需发起租金个案咨询。',
       'C. 市场租金数据覆盖区域，拟租赁物业年租金（含年物业费）> 50万元；市场租金数据覆盖区域，拟租赁物业年租金（含年物业费）≤ 50万元，按照与职场系统中市场租金数据的楼宇/行政区/市的租金单价进行比照（比照优先级：同楼宇价格 > 同行政区价格 > 全市价格），单价超过市场租金数据参考范围的，需发起租金个案咨询；市场租金数据未覆盖区域，且拟租赁物业年租金（含年物业费）> 300万元。'
     ],
-    answer: 'C'
+    answer: 'C',
+    explanation: 'C项完整覆盖了两种情形：一是高租金项目（>50万），二是低价但单价超标项目（≤50万但单价超限），以及无数据区域的高价值项目（>300万），逻辑最严谨。'
   },
   {
     id: '17',
@@ -162,7 +176,8 @@ export const EXAM_DATA: Question[] = [
       'C. 职场消防安全管理、职场设施管理、职场现场和空间管理',
       'D. 职场健康安全管理、职场设施管理、职场现场和空间管理'
     ],
-    answer: 'C'
+    answer: 'C',
+    explanation: '职场运维核心包括消防（安全底线）、设施（设备运行）、现场与空间（使用效率），C项全面且准确。'
   },
   {
     id: '18',
@@ -175,7 +190,8 @@ export const EXAM_DATA: Question[] = [
       'C. 建立保安员定时巡查制度，发现可疑人员或安全隐患应及时报告相关人员',
       'D. 根据管理区域特点和现场情况制定预防和处理上访等突发事件的工作预案'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: 'A项自相矛盾：前半句说“建立登记制度”，后半句却说“无需管控”，明显错误；安保必须对人员与物品进行管控。'
   },
   {
     id: '19',
@@ -183,7 +199,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '管理职场大堂背景墙LOGO标识橙色字体高度（ ）。',
     options: ['A. 150mm', 'B. 160mm', 'C. 180mm', 'D. 200mm'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '根据中国平安CI（企业形象识别）标准手册，大堂LOGO橙色字体高度统一为150mm。'
   },
   {
     id: '20',
@@ -196,7 +213,8 @@ export const EXAM_DATA: Question[] = [
       'C. 600*1200mm LED灯盘',
       'D. 600*600mm 光管灯盘'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: '平安管理职场统一采用600*600mm LED灯盘，节能、照度均匀，符合标准化要求。'
   },
   {
     id: '21',
@@ -209,7 +227,8 @@ export const EXAM_DATA: Question[] = [
       'C. 300*600mm 墙砖',
       'D. 300*600mm 墙砖（横向3*3 V字缝）'
     ],
-    answer: 'D'
+    answer: 'D',
+    explanation: '平安CI规定茶水间墙面使用300*600mm墙砖，且拼缝为横向3*3 V字缝，兼顾防水与美观。'
   },
   {
     id: '22',
@@ -217,7 +236,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '管理职场地面铺贴材料必须要做自流平的是（ ）。',
     options: ['A. 地毯', 'B. 瓷砖', 'C. 石材', 'D. 地胶板'],
-    answer: 'D'
+    answer: 'D',
+    explanation: '地胶板（PVC地板）对基层平整度要求极高，必须做自流平；瓷砖、石材可用水泥砂浆找平，地毯可直接铺于龙骨上。'
   },
   {
     id: '23',
@@ -230,7 +250,8 @@ export const EXAM_DATA: Question[] = [
       'C. 暗藏灯带',
       'D. LED吊线长条灯'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: '会议室照明注重氛围与重点照明，常用筒灯、灯带、吊线灯；600*600mm LED灯盘用于办公区，不用于会议室。'
   },
   {
     id: '24',
@@ -238,7 +259,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '按照平安CI制作要求，公司法定名称、分公司名称所用字体为（ ）。',
     options: ['A. 宋体', 'B. 方正简体黑体', 'C. 方正姚体', 'D. 方正圆体'],
-    answer: 'D'
+    answer: 'D',
+    explanation: '平安CI明确规定公司名称使用“方正圆体”，体现品牌统一性。'
   },
   {
     id: '25',
@@ -246,7 +268,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '形象墙“中国平安PINGAN”当中，“安”与“P”之间的距离是（ ）。',
     options: ['A. 100mm', 'B. 112mm', 'C. 120mm', 'D. 130mm'],
-    answer: 'B'
+    answer: 'B',
+    explanation: '根据平安CI标准，中英文标识间距为112mm，确保视觉平衡。'
   },
   {
     id: '26',
@@ -254,7 +277,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '超五类网络一般以箱为单位订购，每箱网线的长度为：（ ）。',
     options: ['A. 295M', 'B. 305M', 'C. 200M', 'D. 150M'],
-    answer: 'B'
+    answer: 'B',
+    explanation: '行业标准中，超五类网线每箱长度为305米（1000英尺），是通用规格。'
   },
   {
     id: '27',
@@ -267,7 +291,8 @@ export const EXAM_DATA: Question[] = [
       'C. 《综合布线与机房工程技术标准》',
       'D. 《移动邮件管理规范》'
     ],
-    answer: 'C'
+    answer: 'C',
+    explanation: '配线间属于综合布线与机房工程范畴，应参照C项标准。'
   },
   {
     id: '28',
@@ -275,7 +300,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '下列哪项不属于水平子系统的设计内容（ ）。',
     options: ['A. 布线路由设计', 'B. 管槽设计', 'C. 设备安装调试', 'D. 线缆类型选择、布线材料计算'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '水平子系统指从配线架到信息点的布线部分，不包含终端设备安装调试，后者属设备子系统。'
   },
   {
     id: '29',
@@ -283,7 +309,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '多少点以上规模的综合布线项目需要单独招标？',
     options: ['A. 100', 'B. 150', 'C. 200', 'D. 250'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '平安规定，200信息点以上项目需单独招标，以确保专业性和成本控制。'
   },
   {
     id: '30',
@@ -291,7 +318,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '天花吊杆间距应为（ ）。',
     options: ['A. 0.5至0.8米', 'B. 0.8至1米', 'C. 1至1.2米', 'D. 1.2至1.5米'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '根据《建筑装饰装修工程质量验收标准》（GB50210），轻钢龙骨吊顶吊杆间距为1~1.2米。'
   },
   {
     id: '31',
@@ -299,7 +327,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '轻钢龙骨主龙骨间距不得超过（ ）。',
     options: ['A. 0.8米', 'B. 1.0米', 'C. 1.2米', 'D. 1.5米'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '主龙骨间距通常≤1.2米，以确保吊顶承载力和稳定性。'
   },
   {
     id: '32',
@@ -307,7 +336,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '职场建设要求灯具电线截面面积应为（ ）。',
     options: ['A. 1.5平方毫米', 'B. 2.5平方毫米', 'C. 4平方毫米', 'D. 6平方毫米'],
-    answer: 'B'
+    answer: 'B',
+    explanation: '照明回路一般采用2.5mm²铜线，满足载流量与压降要求，1.5mm²偏小，4mm²过大。'
   },
   {
     id: '33',
@@ -315,7 +345,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '职场建设要求插座电线截面面积应为（ ）。',
     options: ['A. 1.5平方毫米', 'B. 2.5平方毫米', 'C. 4平方毫米', 'D. 6平方毫米'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '插座回路（尤其办公区）需承载电脑、打印机等设备，采用4mm²电线更安全，符合大功率需求。'
   },
   {
     id: '34',
@@ -328,7 +359,8 @@ export const EXAM_DATA: Question[] = [
       'C. 设计前的准备阶段至动用前的准备阶段',
       'D. 设计阶段至保修期'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: '甲方管理从项目立项（设计前）开始，直至保修期结束，覆盖全生命周期。'
   },
   {
     id: '35',
@@ -336,7 +368,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '给水管安装好封闭前必须做（ ）。',
     options: ['A. 打压试验', 'B. 灌水试验', 'C. 通球试验', 'D. 闭水试验'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '给水管道需做打压试验（强度与严密性），排水管才做灌水或通球试验。'
   },
   {
     id: '36',
@@ -344,7 +377,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '职场运营多久后方可申请竣工验收（ ）。',
     options: ['A. 不限', 'B. 一个月', 'C. 两个月', 'D. 三个月'],
-    answer: 'D'
+    answer: 'D',
+    explanation: '平安规定职场需运营满3个月，系统稳定、问题暴露充分后，方可申请竣工验收。'
   },
   {
     id: '37',
@@ -352,7 +386,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '哪种电气设备必须安装带漏电保护装置的空气开关（ ）。',
     options: ['A. 照明', 'B. 空调', 'C. 插座', 'D. 应急照明'],
-    answer: 'C'
+    answer: 'C',
+    explanation: '插座回路易接触人体，必须加装漏电保护器（RCD）；照明、空调等可不装（除特殊场所）。'
   },
   {
     id: '38',
@@ -360,7 +395,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '检测墙面垂直度、平整度的工具为（ ）。',
     options: ['A. 水平靠尺、楔形塞尺', 'B. 卷尺', 'C. 钢尺', 'D. 卷线器'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '水平靠尺测平整度，配合楔形塞尺测偏差值，是墙面验收标准工具。'
   },
   {
     id: '39',
@@ -373,7 +409,8 @@ export const EXAM_DATA: Question[] = [
       'C. 工程经各方竣工验收合格→各承包单位提交竣工结算资料→职场管理员整理全套竣工结算资料→机构职场部门结算审核，出具结算报告→职场管理督导室或专业公司财务部进行结算报告审批→二级机构向承包单位结算支付',
       'D. 工程经各方竣工验收合格→职场管理员整理全套竣工结算资料→机构职场部门结算审核，出具结算报告→职场管理督导室或专业公司财务部进行结算报告审批→二级机构向承包单位结算支付'
     ],
-    answer: 'C'
+    answer: 'C',
+    explanation: 'C项完整体现“承包方提交→管理员汇总→部门审核→上级审批→支付”的闭环流程，符合内控要求。'
   },
   {
     id: '40',
@@ -381,7 +418,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '未经采购中心审定结算报告的职场装修工程，专业公司二级机构支付的进度款不得超过工程合同价款的（ ）。',
     options: ['A. 70%', 'B. 80%', 'C. 85%', 'D. 90%'],
-    answer: 'B'
+    answer: 'B',
+    explanation: '为控制风险，未完成最终结算前，进度款上限为80%，预留20%作为结算与质保金。'
   },
   {
     id: '41',
@@ -394,7 +432,8 @@ export const EXAM_DATA: Question[] = [
       'C. 进行结算审核，出具结算报告',
       'D. 查看投标保证金收据扫描件'
     ],
-    answer: 'C'
+    answer: 'C',
+    explanation: '题干列举的是审核“过程”，最后一步是“出具结算报告”，C是逻辑终点。'
   },
   {
     id: '42',
@@ -407,7 +446,8 @@ export const EXAM_DATA: Question[] = [
       'C. 工程形象进度达到总工程量的50%时，甲方向乙方支付合同总价款的50%；工程形象进度达到总工程量的100%时，甲方向乙方支付合同总价款的35%；工程款支付累计达合同总价款的85%后，其余工程款待竣工验收合格并取得当地消防监管部门要求的相关手续和文件，完成结算后15日内支付，并扣除质量保证金。',
       'D. 每月月底按实际完成工程量的85%甲方向乙方支付工程款，累计支付工程款达到合同工程价款的80%时停止支付；工程竣工验收合格，乙方按要求提供点位测试报告和主要材料原厂证明，完成结算后，甲方向乙方支付合同总价款的15%；合同余款为合同工程价款的5%，作为质量保证金，保修期满后一次性付清。'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: 'A项符合平安标准合同条款：50%+45%=95%进度款，5%留作质保金，且明确需取得消防手续后才付尾款，风控严谨。'
   },
   {
     id: '43',
@@ -415,7 +455,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '家具采购中，家具供应商所提供产品的产品保修期为自验收完成之日起（ ）。',
     options: ['A. 一年', 'B. 二年', 'C. 三年', 'D. 五年'],
-    answer: 'D'
+    answer: 'D',
+    explanation: '平安对办公家具要求较高，保修期为5年，体现对产品质量的高要求。'
   },
   {
     id: '44',
@@ -428,7 +469,8 @@ export const EXAM_DATA: Question[] = [
       'C. 总部及大型管理职场（800内勤人力以上）无线AP点位',
       'D. 总部及大型管理职场（800内勤人力以上）所有点位'
     ],
-    answer: 'D'
+    answer: 'D',
+    explanation: '六类线支持千兆及以上网络，用于高密度、高带宽需求的总部及大型职场全点位；中小型职场可用超五类。'
   },
   {
     id: '45',
@@ -441,7 +483,8 @@ export const EXAM_DATA: Question[] = [
       'C. 施工单位',
       'D. 平安内部任一员工'
     ],
-    answer: 'C'
+    answer: 'C',
+    explanation: '施工单位负责现场施工，由其直接下单可确保材料规格、时间匹配，避免信息错位。'
   },
   {
     id: '46',
@@ -449,7 +492,8 @@ export const EXAM_DATA: Question[] = [
     type: 'single',
     content: '家具交货时，家具供应商应向机构收货人确认安装现场具备安装条件，并应在产品送达机构指定地点后（ ）天之内免费完成安装（超过30万元的项目，安装时间双方可另行约定）。',
     options: ['A. 3个工作日', 'B. 4个工作日', 'C. 5个工作日', 'D. 7个工作日'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '平安规定标准安装周期为3个工作日，确保效率；大项目可协商延长。'
   },
   {
     id: '47',
@@ -462,7 +506,8 @@ export const EXAM_DATA: Question[] = [
       'C. 麻布缝线均匀',
       'D. 防锈层无脱落'
     ],
-    answer: 'A'
+    answer: 'A',
+    explanation: '板式家具为板材+封边，无焊接、布料、金属防锈，A项是其核心验收点。'
   },
 
   // --- 多选题 ---
@@ -472,7 +517,8 @@ export const EXAM_DATA: Question[] = [
     type: 'multiple',
     content: '智慧职场系统中包含哪些常用模块？',
     options: ['A. 立项列表', 'B. 职场列表', 'C. 履约列表', 'D. 支付列表'],
-    answer: 'ABCD'
+    answer: 'ABCD',
+    explanation: '智慧职场系统覆盖项目全周期，A（立项）、B（资产）、C（合同履约）、D（付款）均为核心模块。'
   },
   {
     id: '49',
@@ -480,7 +526,8 @@ export const EXAM_DATA: Question[] = [
     type: 'multiple',
     content: '照明环境的主要特性指标有（ ）。',
     options: ['A. 照度指标', 'B. 色温指标', 'C. 眩光值指标', 'D. 价格指标'],
-    answer: 'ABC'
+    answer: 'ABC',
+    explanation: '照度（亮度）、色温（冷暖）、眩光（舒适度）是照明三大技术指标；价格属经济指标，非环境特性。'
   },
   {
     id: '50',
@@ -488,7 +535,8 @@ export const EXAM_DATA: Question[] = [
     type: 'multiple',
     content: '管理职场应该按照三区分离原则进行设计，三区分离是指哪些区域：（ ）。',
     options: ['A. 接待区', 'B. 办公区', 'C. 茶水间', 'D. 会议区'],
-    answer: 'ABD'
+    answer: 'ABD',
+    explanation: '“三区分离”指接待（对外）、办公（日常）、会议（集中讨论）三大功能区物理分离，提升效率；茶水间属辅助区，不单独成“区”。'
   },
   {
     id: '51',
@@ -502,7 +550,8 @@ export const EXAM_DATA: Question[] = [
       'D. 租赁风险可控',
       'E. 支持业务发展'
     ],
-    answer: 'ACDE'
+    answer: 'ACDE',
+    explanation: '租赁管理核心目标是规范（A）、控本（C）、风控（D）、支撑业务（E）；“投产意识”属投资管理范畴，非租赁直接目标。'
   },
   {
     id: '52',
@@ -515,7 +564,8 @@ export const EXAM_DATA: Question[] = [
       'C. 城市行政中心、商务中心',
       'D. 各类污染源及辐射源'
     ],
-    answer: 'BD'
+    answer: 'BD',
+    explanation: '娱乐场所噪音大、人员杂；污染/辐射源危害健康。地铁口、行政/商务中心反而是优选区位。'
   },
   {
     id: '53',
@@ -528,7 +578,8 @@ export const EXAM_DATA: Question[] = [
       'C. 职场使用单位需要熟悉灭火器的位置，手提式灭火器及消火栓应放在隐蔽的位置。',
       'D. 办公职场应确保办公区域整洁、干净、且有足够的照明，工位下方没有堆放纸盒与易燃的物品。'
     ],
-    answer: 'ABD'
+    answer: 'ABD',
+    explanation: '灭火器和消火栓必须放在**明显易取**位置，不能隐蔽（C错误）；ABD均为安全管理基本要求。'
   },
   {
     id: '54',
@@ -536,7 +587,8 @@ export const EXAM_DATA: Question[] = [
     type: 'multiple',
     content: '管理职场哪些区域天花主材为矿棉板（ ）。',
     options: ['A. 大堂', 'B. 敞开办公区', 'C. 机房', 'D. 培训室'],
-    answer: 'BD'
+    answer: 'BD',
+    explanation: '敞开办公区与培训室均需良好吸音与统一吊顶，采用矿棉板；大堂多用装饰性天花，机房用防静电金属板。'
   },
   {
     id: '55',
@@ -544,7 +596,8 @@ export const EXAM_DATA: Question[] = [
     type: 'multiple',
     content: '干扰无线WIFI信号的干扰源主要有（ ）。',
     options: ['A. 微波炉', 'B. 手机', 'C. 支持蓝牙的设备', 'D. 跳频扩频无线网', 'E. 临近的无线网'],
-    answer: 'ABCE'
+    answer: 'ABCE',
+    explanation: '微波炉（2.4GHz）、蓝牙设备、手机（部分频段）、邻近WIFI均会干扰；跳频扩频（FHSS）是抗干扰技术，现代WIFI不使用，故D不选。'
   },
   {
     id: '56',
@@ -552,7 +605,8 @@ export const EXAM_DATA: Question[] = [
     type: 'multiple',
     content: '轻钢龙骨主件为（ ）。',
     options: ['A. 沿顶龙骨', 'B. 沿地龙骨', 'C. 竖向龙骨', 'D. 横撑龙骨', 'E. 契合龙骨'],
-    answer: 'ABCD'
+    answer: 'ABCD',
+    explanation: '轻钢隔墙骨架由沿顶、沿地、竖向（主龙骨）、横撑（加强）组成；“契合龙骨”非标准构件。'
   },
   {
     id: '57',
@@ -565,7 +619,8 @@ export const EXAM_DATA: Question[] = [
       'C. 天花吊顶大面积石膏板需错缝封板',
       'D. 天花吊顶转角部位面层石膏板需整张铺设（切割成L型），不得在转角部位接缝'
     ],
-    answer: 'CD'
+    answer: 'CD',
+    explanation: 'A错：应避免小块拼接，防止开裂；B错：石膏板不能“穿过”梁，应断开；C对：错缝防裂；D对：转角整板防开裂。'
   },
   {
     id: '58',
@@ -578,7 +633,8 @@ export const EXAM_DATA: Question[] = [
       'C. 缝格平直度允许偏差值为1毫米',
       'D. 踢脚缝上口平直度允许偏差值为1毫米'
     ],
-    answer: 'BCD'
+    answer: 'BCD',
+    explanation: '根据《建筑地面工程施工质量验收规范》（GB50209），塑胶地板接缝高低差≤0.5mm，缝格平直≤1mm，踢脚线上口平直≤1mm；表面平整度用2m靠尺检测，偏差≤2mm是指基层，非地板面层，故A不准确。'
   },
   {
     id: '59',
@@ -586,7 +642,8 @@ export const EXAM_DATA: Question[] = [
     type: 'multiple',
     content: '游标卡尺可用来检测哪几种材料（ ）。',
     options: ['A. 玻璃厚度', 'B. 天花矿棉板厚度', 'C. 电线线径', 'D. 瓷砖缝隙大小'],
-    answer: 'ABCD'
+    answer: 'ABCD',
+    explanation: '游标卡尺可精确测量厚度、直径、缝隙等，上述四项均可测。'
   },
   {
     id: '60',
@@ -600,7 +657,8 @@ export const EXAM_DATA: Question[] = [
       'D. 分体空调铜管延长',
       'E. 新做或升级消防工程、通风空调工程'
     ],
-    answer: 'ABCDE'
+    answer: 'ABCDE',
+    explanation: '以上均属专项工程或软装，按制度不得纳入装修结算，需单独立项或费用处理。'
   },
   {
     id: '61',
@@ -613,7 +671,8 @@ export const EXAM_DATA: Question[] = [
       'C. PVC多层复合地胶板-浅色',
       'D. PVC底方块地毯'
     ],
-    answer: 'BC'
+    answer: 'BC',
+    explanation: '培训室天花通常与办公区一致（矿棉板），但甲指乙购清单中明确指定灯盘和地胶板；地毯用于办公区，非培训室。'
   },
 
   // --- 判断题 ---
@@ -623,7 +682,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '职场租赁时间为3-5年应采用PERT地暖。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'B'
+    answer: 'B',
+    explanation: 'PERT地暖成本高、施工复杂，适用于自有物业或长期租赁（>8年）；3-5年属中期租赁，应采用空调等可拆卸供暖方式。'
   },
   {
     id: '63',
@@ -631,7 +691,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '如果职场提前退租，需要在职场系统中走退租立项，完成退租操作流程。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '退租属重大变更，必须通过系统立项审批，确保流程合规、资产处置清晰。'
   },
   {
     id: '64',
@@ -639,7 +700,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '智慧职场系统中，租赁合同在印章系统用印完成后，无需任何操作，职场系统合同状态即为已生效。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'B'
+    answer: 'B',
+    explanation: '用印后需在职场系统手动同步或确认，合同状态才会更新为“已生效”，系统不会自动同步。'
   },
   {
     id: '65',
@@ -647,7 +709,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '只有取得“职场管理员认证证书”的职场管理员才能够提交租赁签报。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '平安实行认证上岗制度，未持证者无权操作系统关键流程，包括签报提交。'
   },
   {
     id: '66',
@@ -655,15 +718,17 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '市场租金数据参考价格可以在财智云>职场管理>通用>资源共享>市场租金数据界面查询。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '该路径是平安内部标准查询入口，信息准确且实时更新。'
   },
   {
     id: '67',
     originalNo: '67',
     type: 'judgment',
-    content: '能在租金查询报表中查到参考价格，仍需要启用租金咨询服务。',
+    content: '能在租金查询报表中查到参考价格，仍需要启用租金个案咨询服务。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '即使有参考价，若实际报价超限或存在特殊条款，仍需个案咨询以确保合规与成本最优。'
   },
   {
     id: '68',
@@ -671,7 +736,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '对承租方而言，必须与具有产权证明文件的业主或其委托人签署租赁合同。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '为确保合同有效性及避免转租风险，必须与产权人或持合法委托书的代理人签约。'
   },
   {
     id: '69',
@@ -679,7 +745,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '退租是指合同租期内全部已租面积提前解约。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '退租特指提前终止全部租赁面积；部分退租称为“缩租”。'
   },
   {
     id: '70',
@@ -687,7 +754,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '相同使用率下，写字楼平面布局设计和空间排列是否合理，直接影响到办公空间是否能够被有效利用。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '合理布局可减少走道、提升工位密度、优化动线，直接提高空间利用效率。'
   },
   {
     id: '71',
@@ -695,7 +763,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '职场使用单位应做好职场污染防治工作，职场环境各项检测指标尚未合格但因业务紧急需要时也可投入使用。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'B'
+    answer: 'B',
+    explanation: '环保检测（如甲醛）不合格严禁投入使用，存在健康与法律风险，无例外。'
   },
   {
     id: '72',
@@ -703,7 +772,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '不同类型的业务职场须符合相关金融监管等政府主管单位的要求。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '如银行网点、保险柜台等需符合银保监会等监管要求，包括安全、标识、功能区等。'
   },
   {
     id: '74',
@@ -711,7 +781,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '管理职场机房地面材质可选防静电架空地板。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '机房需防静电、便于走线，防静电架空地板是标准做法。'
   },
   {
     id: '75',
@@ -719,7 +790,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '管理职场轻钢龙骨隔墙需到楼层顶端。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '隔墙到顶可保证防火分区、隔音效果，符合建筑规范。'
   },
   {
     id: '51-miss',
@@ -727,7 +799,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '按照平安CI制作要求，公司法定名称所用字体为方正圆体。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '与单选题24一致，平安CI明确规定使用方正圆体。'
   },
   {
     id: '50-miss',
@@ -735,7 +808,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '为保障办公网络无线信号覆盖效果，在预算允许的范围内无线AP安装越多越好。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'B'
+    answer: 'B',
+    explanation: 'AP过多会导致同频干扰、信号冲突，反而降低网络质量；应科学规划点位与功率。'
   },
   {
     id: '49-miss',
@@ -743,7 +817,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '超五类网线的最大传输速率是10G。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'B'
+    answer: 'B',
+    explanation: '超五类（Cat5e）最大支持1Gbps（1000Mbps）；10G需六类（Cat6）及以上。'
   },
   {
     id: '48-miss',
@@ -751,7 +826,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '非网管的交换机允许接入公司网络。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'B'
+    answer: 'B',
+    explanation: '公司网络要求可监控、可管理，非网管交换机无法满足安全与运维要求，禁止接入。'
   },
   {
     id: '47-miss',
@@ -759,7 +835,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '在装修过程中产生的设计变更、现场签证，需先报备甲方职场相关部门确认后方可实施。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '所有变更必须经甲方书面确认，否则不予结算，是工程管理基本原则。'
   },
   {
     id: '46-miss',
@@ -767,7 +844,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '清单内容仅做参考，施工方在投标报价时应仔细核对现场、施工图及工程量清单，漏报或少报的项目视为已经包含在投标报价中。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '这是标准招标条款，强调投标人责任，避免后期索赔。'
   },
   {
     id: '83',
@@ -775,7 +853,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '合同内工作内容指合同条款、招标文件、工程量清单、招标图纸所约定的一切工作。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '合同文件体系包含上述四部分，共同构成承包范围。'
   },
   {
     id: '84',
@@ -783,7 +862,8 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '家具供货周期计算方式：供货周期=生产期+运输期+安装期。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '供货周期涵盖从下单到安装完成的全链条时间，定义准确。'
   },
   {
     id: '85',
@@ -791,6 +871,7 @@ export const EXAM_DATA: Question[] = [
     type: 'judgment',
     content: '家具采购中，机构授权订单中指定的机构收货人且在相关出货验收单上签字者为验收人。',
     options: ['A. 正确', 'B. 错误'],
-    answer: 'A'
+    answer: 'A',
+    explanation: '验收人需同时满足“授权指定”和“签字确认”两个条件，确保责任明确。'
   }
 ];

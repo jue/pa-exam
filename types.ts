@@ -7,4 +7,5 @@ export interface Question {
   content: string;
   options: string[];
   answer?: string; // Added field for reference answer
+  explanation: string;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Question } from '../types';
-import { CheckCircle2, XCircle, HelpCircle, CheckSquare } from 'lucide-react';
+import { CheckCircle2, XCircle, HelpCircle, CheckSquare, BookOpenCheck } from 'lucide-react';
 
 interface QuestionCardProps {
   question: Question;
@@ -11,8 +11,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Reset state when forceShowAnswer changes (optional, but good for switching modes)
-  // or when question id changes (handled by React key in parent)
   useEffect(() => {
     if (forceShowAnswer) {
       setIsSubmitted(false);
@@ -42,7 +40,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
   };
 
   const handleOptionClick = (optionLabel: string) => {
-    if (forceShowAnswer || isSubmitted) return; // Prevent interaction in study mode or after submit
+    if (forceShowAnswer || isSubmitted) return;
 
     if (isMultiple) {
       setSelectedOptions(prev => 
@@ -51,7 +49,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
           : [...prev, optionLabel]
       );
     } else {
-      // Single/Judgment: Immediate submit
       setSelectedOptions([optionLabel]);
       setIsSubmitted(true);
     }
@@ -85,16 +82,14 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
         {/* Options */}
         <div className="space-y-3">
           {question.options.map((option, index) => {
-            const optionLabel = option.charAt(0); // Assumes "A. Text" format
+            const optionLabel = option.charAt(0);
             const isCorrect = question.answer?.includes(optionLabel);
             const isSelected = selectedOptions.includes(optionLabel);
             
-            // Determine Styling
             let containerStyle = "bg-slate-50 border-slate-100 text-slate-700 hover:bg-slate-100";
             let icon = null;
 
             if (showResult) {
-               // Result Mode
                if (isCorrect) {
                  containerStyle = "bg-green-50 border-green-500 text-green-800 ring-1 ring-green-500";
                  icon = <CheckCircle2 size={20} className="text-green-600 flex-shrink-0" />;
@@ -105,7 +100,6 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
                  containerStyle = "opacity-50 grayscale";
                }
             } else {
-              // Interactive Mode
               if (isSelected) {
                 containerStyle = "bg-blue-50 border-blue-500 text-blue-800 ring-1 ring-blue-500 shadow-sm";
               }
@@ -144,31 +138,38 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ question, forceShowA
           </button>
         )}
 
-        {/* Reference Answer Section */}
+        {/* Reference Answer & Explanation Section */}
         {showResult && question.answer && (
           <div className={`
-            mt-6 p-4 rounded-xl flex items-start animate-in fade-in slide-in-from-top-2 duration-300
+            mt-6 rounded-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 border
             ${isSubmitted && selectedOptions.some(o => !question.answer?.includes(o)) || isSubmitted && question.answer?.split('').some(a => !selectedOptions.includes(a)) 
-              ? 'bg-red-50 text-red-900' // Show red background if user submitted wrong answer
-              : 'bg-green-50 text-green-900' // Show green background if correct (or in study mode)
+              ? 'bg-red-50 border-red-100 text-red-900' 
+              : 'bg-green-50 border-green-100 text-green-900'
             }
           `}>
-            <HelpCircle size={20} className="mr-3 mt-0.5 flex-shrink-0 opacity-70" />
-            <div>
-              <div className="text-xs font-semibold uppercase opacity-70 mb-1">正确答案</div>
-              <div className="text-2xl font-bold tracking-widest">{question.answer}</div>
-              
-              {!forceShowAnswer && isSubmitted && (
-                 <div className="mt-2 text-sm font-medium opacity-90">
-                    {(() => {
-                        const userStr = selectedOptions.sort().join('');
-                        const ansStr = question.answer || '';
-                        if (userStr === ansStr) return "回答正确！🎉";
-                        return "回答错误，请查看正确答案。";
-                    })()}
-                 </div>
-              )}
+            {/* Answer Header */}
+            <div className="p-4 flex items-center">
+              <HelpCircle size={20} className="mr-3 opacity-70" />
+              <div>
+                <div className="text-xs font-semibold uppercase opacity-70 mb-0.5">正确答案</div>
+                <div className="text-2xl font-bold tracking-widest">{question.answer}</div>
+              </div>
             </div>
+
+            {/* Explanation */}
+            {question.explanation && (
+              <div className="px-4 pb-4 pt-0">
+                <div className="border-t border-black/10 pt-3 mt-1">
+                  <div className="flex items-start gap-2 text-sm leading-relaxed opacity-90">
+                    <BookOpenCheck size={16} className="mt-1 flex-shrink-0 opacity-70" />
+                    <span>
+                      <span className="font-bold mr-1">解析：</span>
+                      {question.explanation}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

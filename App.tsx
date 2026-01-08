@@ -47,53 +47,58 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-12 bg-slate-50">
-      {/* Sticky Header - Compact for Mobile */}
+      {/* Sticky Header - Optimized for minimal height */}
       <div className="sticky top-0 z-20 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div className="max-w-3xl mx-auto px-4 py-2 space-y-2">
+        <div className="max-w-3xl mx-auto px-4 pt-3 pb-2 space-y-3">
           
-          {/* Top Row: Logo + Toggle */}
+          {/* Top Row: Logo/Title */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <div className="bg-orange-600 p-1.5 rounded-lg text-white shadow-sm flex-shrink-0">
-                <BookOpen size={18} />
-              </div>
-              <div className="leading-none">
-                <h1 className="text-sm font-bold text-slate-900">职场管理员考试</h1>
-                <p className="text-[10px] text-slate-500 mt-0.5">2026年上半年模拟卷</p>
-              </div>
-            </div>
+             <div className="flex items-center gap-2 text-orange-700">
+               <BookOpen size={20} strokeWidth={2.5} />
+               <div className="flex flex-col">
+                 <h1 className="text-base font-extrabold leading-none tracking-tight text-slate-900">职场管理员考试</h1>
+               </div>
+             </div>
+             <div className="text-[10px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">
+               模拟卷 2026
+             </div>
+          </div>
 
+          {/* Second Row: Search + Toggle (Inline to save space) */}
+          <div className="flex gap-2">
+            <div className="flex-1">
+               <SearchBar value={searchTerm} onChange={setSearchTerm} />
+            </div>
             <button
               onClick={() => setShowAllAnswers(!showAllAnswers)}
               className={`
-                flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border
+                flex items-center justify-center w-11 h-11 rounded-lg transition-all duration-200 border flex-shrink-0
                 ${showAllAnswers
-                  ? 'bg-orange-50 text-orange-700 border-orange-200'
-                  : 'bg-slate-50 text-slate-600 border-slate-200'
+                  ? 'bg-orange-50 text-orange-600 border-orange-200'
+                  : 'bg-white text-slate-500 border-slate-200'
                 }
               `}
+              aria-label={showAllAnswers ? '切换到答题模式' : '切换到背题模式'}
             >
-              {showAllAnswers ? <Eye size={14} /> : <EyeOff size={14} />}
-              <span>{showAllAnswers ? '背题模式' : '答题模式'}</span>
+              {showAllAnswers ? <Eye size={20} /> : <EyeOff size={20} />}
             </button>
           </div>
-
-          {/* Second Row: Search */}
-          <SearchBar value={searchTerm} onChange={setSearchTerm} />
           
           {/* Third Row: Tabs */}
-          <CategoryTabs 
-            activeTab={activeTab} 
-            onTabChange={setActiveTab} 
-            counts={counts}
-          />
+          <div className="pb-1">
+            <CategoryTabs 
+              activeTab={activeTab} 
+              onTabChange={setActiveTab} 
+              counts={counts}
+            />
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
       <main className="max-w-3xl mx-auto px-4 py-4">
         {filteredData.length > 0 ? (
-          <div className="space-y-3">
+          <div className="space-y-4">
             {filteredData.map((question) => (
               <QuestionCard 
                 key={question.id} 
